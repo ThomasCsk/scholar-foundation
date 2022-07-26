@@ -36,17 +36,18 @@ const typeDefs = gql`
   }
   
   type Application {
-    createdAt: Date
+    _id: ID
+    createdAt: String 
     name: String!
     birthday: String
     phoneNumber: Int
     addressStreet: String
     addressCity: String
-    state: Statelist
+    state: String
     zipCode: Int
     guardianName: String!
     guardianPhone: String!
-    grade: Gradelist
+    grade: String
     school: String 
     currentStatus: Int
   }
@@ -58,68 +59,78 @@ const typeDefs = gql`
     application(currentStatus: Int!): Application
   }
 
-  enum Gradelist {
-    SIXTH
-    SEVENTH
-    EIGHTH
-    NINTH
-    TENTH
-    ELEVENTH
-    TWELTH 
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
   }
 
-  enum Statelist {
-    ALABAMA 
-    ALASKA 
-    ARIZONA 
-    ARKANSAS 
-    CALIFORNIA 
-    COLORADO 
-    CONNECTICUT 
-    DELAWARE 
-    FLORIDA 
-    GEORGIA 
-    HAWAII 
-    IDAHO 
-    ILLINOIS
-    INDIANA 
-    IOWA 
-    KANSAS 
-    KENTUCKY 
-    LOUISIANA 
-    MAINE 
-    MARYLAND 
-    MASSACHUSETTS 
-    MICHIGAN 
-    MINNESOTA 
-    MISSISSIPPI 
-    MISSOURI 
-    MONTANA
-    NEBRASKA 
-    NEVADA 
-    NEW HAMPSHIRE 
-    NEW JERSEY 
-    NEW MEXICO 
-    NEW YORK 
-    NORTH CAROLINA 
-    NORTH DAKOTA 
-    OHIO 
-    OKLAHOMA 
-    OREGON 
-    PENNSYLVANIA
-    RHODE ISLAND 
-    SOUTH CAROLINA 
-    SOUTH DAKOTA 
-    TENNESSEE 
-    TEXAS 
-    UTAH 
-    VERMONT 
-    VIRGINIA 
-    WASHINGTON 
-    WEST VIRGINIA 
-    WISCONSIN 
-    WYOMING    
+  type Auth {
+    token: ID!
+    user: User
   }
+
+  enum Gradelist {
+      SIXTH
+      SEVENTH
+      EIGHTH
+      NINTH
+      TENTH
+      ELEVENTH
+      TWELTH 
+    }
+
+  enum Statelist {
+      ALABAMA 
+      ALASKA 
+      ARIZONA 
+      ARKANSAS 
+      CALIFORNIA 
+      COLORADO 
+      CONNECTICUT 
+      DELAWARE 
+      FLORIDA 
+      GEORGIA 
+      HAWAII 
+      IDAHO 
+      ILLINOIS
+      INDIANA 
+      IOWA 
+      KANSAS 
+      KENTUCKY 
+      LOUISIANA 
+      MAINE 
+      MARYLAND 
+      MASSACHUSETTS 
+      MICHIGAN 
+      MINNESOTA 
+      MISSISSIPPI 
+      MISSOURI 
+      MONTANA
+      NEBRASKA 
+      NEVADA 
+      NEW_HAMPSHIRE 
+      NEW_JERSEY 
+      NEW_MEXICO 
+      NEW_YORK 
+      NORTH_CAROLINA 
+      NORTH_DAKOTA 
+      OHIO 
+      OKLAHOMA 
+      OREGON 
+      PENNSYLVANIA
+      RHODE_ISLAND 
+      SOUTH_CAROLINA 
+      SOUTH_DAKOTA 
+      TENNESSEE 
+      TEXAS 
+      UTAH 
+      VERMONT 
+      VIRGINIA 
+      WASHINGTON 
+      WEST_VIRGINIA 
+      WISCONSIN 
+      WYOMING    
+    }
 `;
 
 // export the typeDefs
