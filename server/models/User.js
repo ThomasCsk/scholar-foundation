@@ -25,6 +25,12 @@ const userSchema = new Schema(
       required: true,
       trim: true
     },
+    applications: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Application'
+      }
+    ],
     admin: {
       // 0 if student, 1 if staff/admin
       type: Boolean,
