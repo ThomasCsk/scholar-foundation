@@ -43,25 +43,38 @@ const typeDefs = gql`
     phoneNumber: Int
     addressStreet: String
     addressCity: String
-    state: String
+    state: Statelist
     zipCode: Int
     guardianName: String!
     guardianPhone: String!
-    grade: String
+    grade: Gradelist
     school: String 
     currentStatus: Int
   }
 
   type Query {
+    me: User 
     users: [User]
     user(username: String!): User
-    applications(name: String): [Application]
-    application(currentStatus: Int!): Application
+    applications(currentStatus: Int): [Application]
+    application(name: String!): Application
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addApplication(createdAt: String,
+                  name: String!
+                  birthday: String
+                  phoneNumber: Int
+                  addressStreet: String
+                  addressCity: String
+                  state: Statelist
+                  zipCode: Int
+                  guardianName: String!
+                  guardianPhone: String!
+                  grade: Gradelist
+                  school: String): Application
   }
 
   type Auth {

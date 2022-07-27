@@ -8,27 +8,41 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     // find all applications in order of descending date
     Query: {
-        applications: async (parent, { username }) => {
-            const params = username ? { username } : {};
+        applications: async (parent, { currentStatus }) => {
+            const params = currentStatus ? { currentStatus } : {};
             return Application.find(params).sort({ createdAt: -1 });
-            },
-    },
+        },
+    
         // find one application by name  
-        application: async (parent, { _id }) => {
-            return Application.findOne({ _id });
-    },
+        application: async (parent, { name }) => {
+            const userApplication = await Application.findOne({ name });
+            return {userApplication};
+        },
         // get all users
         users: async () => {
             return User.find()
                 .select('-__v -password')
                 .populate('applications')
-    },
+        },
         // get a user by username
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
                 .populate('applications')
-    },
+        },
+        // verify the users token
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
+                .select('-__v -password') 
+                .populate('applications');
+
+            return userData;
+        }
+
+        throw new AuthenticationError('Not logged in');
+    }
+},
 
     Mutation: {
         // adds a user 
@@ -54,7 +68,24 @@ const resolvers = {
 
             const token = signToken(user);
             return { token, user };
-        }
+        },
+        // creates the application 
+        addApplication: async (parent, args, context) => {
+            if (context.user) {
+                // ensuring the user is logged in
+                const application = await Application.create({ ...args, username: context.user.username });
+          
+              await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $push: { applications: application.name } },
+                { new: true }
+              );
+          
+              return application;
+            }
+          
+            throw new AuthenticationError('You need to be logged in.');
+          },
     }
 };
 
