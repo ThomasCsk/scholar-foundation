@@ -1,12 +1,13 @@
 const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat.js');
+const bcrypt = require('bcrypt');
 
 const applicationSchema = new Schema(
   {
     createdAt: {
       type: Date,
       default: Date.now,
-      get: timestamp => dateFormat(timestamp)
+      //get: timestamp => dateFormat(timestamp)
     },
     name: {
       type: String,
@@ -21,8 +22,20 @@ const applicationSchema = new Schema(
       required: true,
       match: [/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 'Must be a valid phone number!']
     },
-    homeAddress: {
+    addressStreet: {
       type: String,
+      required: true
+    },
+    addressCity: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true
+    },
+    zipCode: {
+      type: Number,
       required: true
     },
     guardianName: {
@@ -55,7 +68,7 @@ const applicationSchema = new Schema(
       getters: true
     }
   }
-)
+);
 
 const Application = model('Application', applicationSchema)
 

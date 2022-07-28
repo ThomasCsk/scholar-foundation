@@ -40,7 +40,7 @@ const typeDefs = gql`
     createdAt: String 
     name: String!
     birthday: String
-    phoneNumber: Int
+    phoneNumber: String
     addressStreet: String
     addressCity: String
     state: Statelist
@@ -62,11 +62,11 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, name: String!, admin: Boolean!): Auth
     addApplication(createdAt: String,
                   name: String!
                   birthday: String
-                  phoneNumber: Int
+                  phoneNumber: String
                   addressStreet: String
                   addressCity: String
                   state: Statelist
@@ -74,7 +74,8 @@ const typeDefs = gql`
                   guardianName: String!
                   guardianPhone: String!
                   grade: Gradelist
-                  school: String): Application
+                  school: String
+                  currentStatus: Int): Application
   }
 
   type Auth {

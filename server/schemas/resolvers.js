@@ -57,13 +57,13 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('The email is incorrect');
+                throw new AuthenticationError('The email or password is incorrect');
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('The password is incorrect')
+                throw new AuthenticationError('The email or password is incorrect')
             }
 
             const token = signToken(user);
@@ -71,6 +71,7 @@ const resolvers = {
         },
         // creates the application 
         addApplication: async (parent, args, context) => {
+            console.log(context.user);
             if (context.user) {
                 // ensuring the user is logged in
                 const application = await Application.create({ ...args, username: context.user.username });
@@ -86,6 +87,7 @@ const resolvers = {
           
             throw new AuthenticationError('You need to be logged in.');
           },
+        // edits the application
     }
 };
 
