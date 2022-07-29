@@ -63,7 +63,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, name: String!, admin: Boolean!): Auth
-    addApplication(createdAt: String,
+    addApplication(_id: ID,
+                  createdAt: String,
                   name: String!
                   birthday: String
                   phoneNumber: String
@@ -76,6 +77,19 @@ const typeDefs = gql`
                   grade: Gradelist
                   school: String
                   currentStatus: Int): Application
+    editApplication(_id: ID,
+                  createdAt: String,
+                  name: String!
+                  birthday: String
+                  phoneNumber: String
+                  addressStreet: String
+                  addressCity: String
+                  state: Statelist
+                  zipCode: Int
+                  guardianName: String!
+                  guardianPhone: String!
+                  grade: Gradelist
+                  school: String ): Application
   }
 
   type Auth {
