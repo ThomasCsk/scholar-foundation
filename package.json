@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/ThomasCsk/scholar-foundation#readme",
   "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
     "concurrently": "^7.2.2"
+  },
+  "dependencies": {
+    "faker": "^6.6.6"
   }
 }
