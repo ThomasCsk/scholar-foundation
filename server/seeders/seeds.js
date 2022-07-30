@@ -3,6 +3,7 @@ const { User, Application } = require('../models');
 
 db.once('open', async () => {
   await User.deleteMany();
+  await Application.deleteMany();
 
   await User.create({
     username: 'sbooks',
@@ -86,8 +87,6 @@ await User.create({
  
 console.log('users seeded');
 
-await Application.deleteMany();
-
 await Application.create({
     createdAt: '06/23/2022',
     name: 'Pamela Rams',
@@ -168,10 +167,7 @@ await Application.create({
     currentStatus: '0'
  });
      
+console.log('applications seeded');
 
-  
-
-  console.log('applications seeded');
-
-  process.exit();
+  process.exit(0);
 });

@@ -72,22 +72,41 @@ const resolvers = {
         // creates the application 
         addApplication: async (parent, args, context) => {
             console.log(context.user);
+            // ensuring the user is logged in
             if (context.user) {
-                // ensuring the user is logged in
                 const application = await Application.create({ ...args, username: context.user.username });
           
-              await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $push: { applications: application.name } },
-                { new: true }
-              );
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { applications: application._id } },
+                    { new: true }
+                );
           
-              return application;
+                return application;
             }
           
             throw new AuthenticationError('You need to be logged in.');
           },
         // edits the application
+        editApplication: async (parent, args, context) => {
+            // ensuring the user is logged in
+            if (context.user) {
+                // getting the users id
+                const user = await User.findById( context.user.id );
+                // get the application info
+                const {applications} = user;
+
+            const application = await Application.findByIdAndUpdate(
+                { _id: applications },
+                 args,
+                { new: true }
+            );
+
+            return application;
+        }
+
+        throw new AuthenticationError('You need to be logged in.');
+        },
     }
 };
 
