@@ -12,7 +12,8 @@ export const QUERY_USERS = gql`
   }
 `;
 export const QUERY_APPLICATIONS = gql`
-  query application{
+query Applications {
+  applications {
     _id
     createdAt
     name
@@ -28,4 +29,19 @@ export const QUERY_APPLICATIONS = gql`
     school
     currentStatus
   }
+}
 `;
+export const QUERY_ME_DASH = gql`
+  {
+    me{
+      _id
+      name
+      admin
+      applications {
+        _id
+        name
+        currentStatus
+      }
+    }
+  }
+`
