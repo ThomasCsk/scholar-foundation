@@ -5,33 +5,17 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
 
-function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '', username: '', name: '' });
-  const [addUser] = useMutation(ADD_USER);
-  
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-  
-    try {
-        const { data } = await addUser({
-            variables: {...formState},
-        });
-
-        Auth.addUser(data.addUser.token);
-    } catch (e) {
-        console.error(e);
-    }
-
-    setFormState({
-        name: '',
+const Signup = () =>{
+    const [formState, setFormState] = useState({
         username: '',
+        name: '',
         email: '',
         password: '',
-    });
-
-  };
-
+        admin: '',
+      });
+      const [addUser, { error }] = useMutation(ADD_USER);
+  
+  // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -40,61 +24,87 @@ function Signup(props) {
     });
   };
 
-  console.log(formState)
+//submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+        const { data } = await addUser({
+            variables: {...formState},
+        });
+
+        Auth.login(data.addUser.token);
+    } catch (e) {
+        console.error(e);
+    }
+
+  };
+
+console.log(formState)
 
   return (
     <div>
         <Link to="/login">← Go to Login</Link>
     <h2>SIGN UP</h2>
     <form onSubmit={handleFormSubmit}>
-      <div className="flex-row space-between my-2">
+    <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          placeholder="username"
+          name="username"
+          type="username"
+          id="signup_username"
+          value={formState.username}
+          onChange={handleChange}
+        />
+    </div>
+    <div> 
         <label htmlFor="Name">Name:</label>
         <input
           placeholder="Name"
-          value={formState.name}
           name="name"
           type="name"
           id="name"
+          value={formState.name}
           onChange={handleChange}
         />
-      </div>
-      <div className="flex-row space-between my-2">
-        <label htmlFor="name">Username:</label>
-        <input
-          placeholder="username"
-          value={formState.username}
-          name="username"
-          type="text"
-          id="signup_username"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="flex-row space-between my-2">
+    </div>
+    <div>
         <label htmlFor="email">Email:</label>
         <input
           placeholder="youremail@email.com"
-          value={formState.email}
           name="email"
           type="email"
           id="email"
+          value={formState.email}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <label htmlFor="pwd">Password:</label>
+    </div>
+    <div>
+        <label htmlFor="password">Password:</label>
         <input
           placeholder="******"
-          value={formState.password}
           name="password"
           type="password"
           id="signuppwd" 
+          value={formState.password}
           onChange={handleChange}
         />
-      </div>
-      <div>
+    </div>
+    <div>
+        <label htmlFor="admin">Admin Only:</label>
+        <input
+          placeholder="******"
+          name="password"
+          type="password"
+          id="signuppwd" 
+          value={formState.admin}
+          onChange={handleChange}
+        />
+    </div>
         <button type="submit">Submit</button>
-      </div>
-    </form>
+     </form>
+     {error && <div>Signup failed</div>}
   </div>
  
   )
