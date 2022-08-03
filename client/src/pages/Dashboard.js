@@ -10,7 +10,7 @@ const Dashboard = () => {
   // const { loading, data: userData } = useQuery(QUERY_ME_DASH);
   // const adminStatus = userData.admin;
   
-  const adminStatus = true;
+  const adminStatus = false;
   // const adminStatus = false;
 
   // const loggedIn = Auth.loggedIn();
