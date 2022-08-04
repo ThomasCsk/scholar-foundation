@@ -1,13 +1,12 @@
 const { Schema, model } = require('mongoose');
-// const dateFormat = require('../utils/dateFormat.js');
-const bcrypt = require('bcrypt');
+const dateFormat = require('../utils/dateformat');
 
 const applicationSchema = new Schema(
   {
     createdAt: {
       type: Date,
       default: Date.now,
-      //get: timestamp => dateFormat(timestamp)
+      get: timestamp => dateFormat(timestamp)
     },
     name: {
       type: String,
