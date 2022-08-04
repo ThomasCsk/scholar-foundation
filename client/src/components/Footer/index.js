@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return(
-    <footer style={display="flex"}>
+    <footer>
       <div>
         Made by some dope devs
       </div>
