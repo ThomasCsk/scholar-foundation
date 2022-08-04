@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 
 function ApplicationForm() {
     const [formState, setFormState] = useState({ student_name: '', birthday: '', student_phonenumber: '', student_street: '', city: '', state: '', guardian_name: '', guardian_phone: '', grade: '', school: ''});
-    const [errorMessage, setErrorMessage] = useState('');
-    const { student_name, birthday, student_phonenumber, student_street, city, state, guardian_name, guardian_phone, grade, school } = formState;
+    // const [errorMessage, setErrorMessage] = useState('');
+    // const { student_name, birthday, student_phonenumber, student_street, city, state, guardian_name, guardian_phone, grade, school } = formState;
     const handleSubmit = (e) => {
-      e.preventDefault();
-      if (!errorMessage) {
-        console.log('Submit Form', formState);
-      }
+    //   e.preventDefault();
+    //   if (!errorMessage) {
+    //     console.log('Submit Form', formState);
+    //   }
+    
+    //   if (!errorMessage) {
+    //     setFormState({ ...formState, [e.target.name]: e.target.value });
+    //     console.log('Handle Form', formState);
+    //   }
     };
-    if (!errorMessage) {
-      setFormState({ ...formState, [e.target.name]: e.target.value });
-      console.log('Handle Form', formState);
+    const handleChange = () => {
+
     }
-  }
     return (
       <div>
       <form className="application-form" onSubmit={handleSubmit} onBlur={handleChange}>
@@ -130,6 +133,6 @@ function ApplicationForm() {
       </form>
       </div>
     );
-  
+  }
   
   export default ApplicationForm;

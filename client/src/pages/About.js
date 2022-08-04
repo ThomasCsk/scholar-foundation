@@ -1,18 +1,13 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import {QUERY_USERS} from '../utils/queries';
 
 const About = () => {
-
-  const { data: userData } = useQuery(QUERY_USERS);
-
-  const logData = () => {
-    console.log(userData);
-  }
   return(
     <div>
-      About
-      <button onClick={logData}>Button</button>
+      <h2>About Us</h2>
+      <div>
+        <div>Image</div>
+        <div>Recusandae nostrum beatae quis sequi. Cupiditate laudantium ducimus dolorem quas voluptas ut. Voluptatem nemo id ratione molestias doloremque est asperiores minima. Modi asperiores cum dolores. Impedit deserunt qui autem aliquam quaerat. Adipisci eum iure aliquam animi.</div>
+      </div>      
     </div>
   )
 }
