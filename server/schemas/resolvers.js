@@ -78,7 +78,7 @@ const resolvers = {
           
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { applications: application._id } },
+                    { $push: { applications: application } },
                     { new: true }
                 );
           
@@ -107,6 +107,18 @@ const resolvers = {
 
         throw new AuthenticationError('You need to be logged in.');
         },
+        acceptApplication: async(parent, args) => {
+            let filter = Application.findOne({name: args.name})
+            let update = {currentStatus: 1};
+            const app = await Application.findOneAndUpdate(filter, update, {new: true});
+            return app
+        },
+        denyApplication: async(parent, args) => {
+            let filter = Application.findOne({name: args.name})
+            let update = {currentStatus: 2};
+            const app = await Application.findOneAndUpdate(filter, update, {new: true});
+            return app
+        }
     }
 };
 
