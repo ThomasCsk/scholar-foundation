@@ -28,8 +28,11 @@ const Header = () => {
           <h3>Donate</h3>
         </Link>
         {/* Add in an if statement for if theyre logged in or not. Render either login-signup or logout depending*/}
-        <Link to="/loginsignup">
-          <h3>LogIn/SignUp</h3>
+        <Link to="/login">
+          <h3>Login</h3>
+        </Link>
+        <Link to="/signup">
+          <h3>Signup</h3>
         </Link>
         {/* <a href='/' onClick={logout}>Logout</a> */}
       </div>
