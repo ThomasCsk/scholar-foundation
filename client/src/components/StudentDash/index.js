@@ -7,7 +7,7 @@ const StudentDash = () => {
       <div>
         <h2>Student Dashboard</h2>
       </div>
-      {/* <ApplicationForm/> */}
+       <ApplicationForm/> 
     </section>
   );
 }

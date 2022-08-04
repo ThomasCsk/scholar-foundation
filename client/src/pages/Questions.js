@@ -31,6 +31,7 @@ const data = {
 }
 
 const Questions = () => {
+  
   return(
     <div>
       <Faq data={data}/>

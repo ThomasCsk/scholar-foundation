@@ -1,37 +1,51 @@
 import React, { useState } from 'react';
 
-const ApplicationForm = () => {
+function ApplicationForm() {
+    const [formState, setFormState] = useState({ student_name: '', birthday: '', student_phonenumber: '', student_street: '', city: '', state: '', guardian_name: '', guardian_phone: '', grade: '', school: ''});
+    const [errorMessage, setErrorMessage] = useState('');
+    const { student_name, birthday, student_phonenumber, student_street, city, state, guardian_name, guardian_phone, grade, school } = formState;
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (!errorMessage) {
+        console.log('Submit Form', formState);
+      }
+    };
+    if (!errorMessage) {
+      setFormState({ ...formState, [e.target.name]: e.target.value });
+      console.log('Handle Form', formState);
+    }
+  }
     return (
       <div>
-      <form className="application-form">
+      <form className="application-form" onSubmit={handleSubmit} onBlur={handleChange}>
         <div className='container'>
           <h1>Scholarship Application</h1>
           <p>Please fill out this form in its entirety. Double check all answers before submitting.</p>
 
           <div className='form-questions'>
             {/* input for students name */}
-            <label for='student-name'>Student Name:</label>
-            <input type='text' name='student-name' required/>
+            <label for='student_name'>Student Name:</label>
+            <input type='text' name='student_name' defaultValue={formState.student_name} onBlur={handleChange} required/>
 
             {/* input for students birthday */}
             <label for='date'>Students Birthday:</label>
-            <input type='date' name='birthday' required/>
+            <input type='date' name='birthday' defaultValue={formState.birthday} onBlur={handleChange} required/>
 
             {/* input for students phone number */}
-            <label for='phone-number'>Student Phone Number:</label>
-            <input type='text' name='student-phonenumber'/>
+            <label for='phone_number'>Student Phone Number:</label>
+            <input type='text' name='student_phonenumber' defaultValue={formState.student_phonenumber} onBlur={handleChange} />
 
             {/* input for students street address */}
-            <label for='street-address'>Student Street Adress:</label>
-            <input type='text' name='student-street'/>
+            <label for='street_address'>Student Street Adress:</label>
+            <input type='text' name='student_street' defaultValue={formState.student_street} onBlur={handleChange} />
 
             {/* input for students city */}
             <label for='city'>City:</label>
-            <input type='text' name='city'/>
+            <input type='text' name='city' defaultValue={formState.city} onBlur={handleChange} />
 
             {/* input for students state */}
             <label for='state'>Choose a State:</label>
-            <select id='state' name='state'>
+            <select id='state' name='state' defaultValue={formState.state} onBlur={handleChange} >
             <option value="ALABAMA">ALABAMA</option>
             <option value="ALASKA">ALASKA</option>
             <option value="ARIZONA">ARIZONA</option>
@@ -85,16 +99,16 @@ const ApplicationForm = () => {
             </select>
           
             {/* input for guardian name */}
-            <label for='guardian-name'>Enter in Guardian Name:</label>
-            <input type='text' name='guardian-name'/>
+            <label for='guardian_name'>Enter in Guardian Name:</label>
+            <input type='text' name='guardian_name' defaultValue={formState.guardian_name} onBlur={handleChange}/>
 
             {/* input for guardians phone */}
-            <label for='guardian-phone'>Enter in Guardian Phone Number:</label>
-            <input type='text' name='guardian-phone'/>
+            <label for='guardian_phone'>Enter in Guardian Phone Number:</label>
+            <input type='text' name='guardian_phone' defaultValue={formState.guardian_phone} onBlur={handleChange}/>
 
             {/* input for gade of student */}
             <label for='grade'>Enter in Grade of Student:</label>
-            <select id='grade' name='grade'>
+            <select id='grade' name='grade' defaultValue={formState.grade} onBlur={handleChange}>
             <option value="SIXTH"></option>
             <option value="SEVENTH">SEVENTH</option>
             <option value="EIGHTH">EIGHTH</option>
@@ -106,16 +120,16 @@ const ApplicationForm = () => {
 
             {/* input for students school */}
             <label for='school'>Enter in Students School:</label>
-            <input type='text' name='school'/>
+            <input type='text' name='school' defaultValue={formState.school} onBlur={handleChange}/>
 
             {/* input for submit bitton */}
-            <input type="button" value="Submit" />
+            <button type="submit">Submit Application</button>
 
           </div>
         </div>
       </form>
       </div>
     );
-  };
+  
   
   export default ApplicationForm;
