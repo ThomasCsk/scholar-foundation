@@ -108,6 +108,9 @@ const ApplicationForm = () => {
             <label for='school'>Enter in Students School:</label>
             <input type='text' name='school'/>
 
+            {/* input for submit bitton */}
+            <input type="button" value="Submit" />
+
           </div>
         </div>
       </form>
