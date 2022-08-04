@@ -37,11 +37,6 @@ export const QUERY_ME_DASH = gql`
       _id
       name
       admin
-      applications {
-        _id
-        name
-        currentStatus
-      }
     }
   }
 `

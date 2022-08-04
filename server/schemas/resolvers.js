@@ -94,10 +94,10 @@ const resolvers = {
                 // getting the users id
                 const user = await User.findById( context.user.id );
                 // get the application info
-                const {applications} = user;
+                const {name} = user;
 
-            const application = await Application.findByIdAndUpdate(
-                { _id: applications },
+            const application = await Application.findOneAndUpdate(
+                { name: name },
                  args,
                 { new: true }
             );
