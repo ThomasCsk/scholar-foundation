@@ -7,7 +7,7 @@ const Donate = () => {
       <h1>Donate Now</h1>
       <div>
         <p className="donate-about">
-          The scholarship foundation would be not possible without the support
+          The scholar foundation would be not possible without the support
           of donors like you. Without your help, we would not be able to give
           children the academic futures that they desire. Thank you for your
           generosity in making their dreams come true.
@@ -15,7 +15,7 @@ const Donate = () => {
       </div>
       <div>
         <h3>Below you will find our contact information.</h3>
-        <p>Checks should be made out to Scholarship Foundation and sent to:</p>
+        <p>Checks should be made out to Scholar Foundation and sent to:</p>
         <p>
           Scholar Foundation <br></br>
           PO Box 1526 MCPO,1255 Makati<br></br>
