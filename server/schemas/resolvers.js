@@ -72,22 +72,53 @@ const resolvers = {
         // creates the application 
         addApplication: async (parent, args, context) => {
             console.log(context.user);
+            // ensuring the user is logged in
             if (context.user) {
-                // ensuring the user is logged in
                 const application = await Application.create({ ...args, username: context.user.username });
           
-              await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $push: { applications: application.name } },
-                { new: true }
-              );
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { applications: application } },
+                    { new: true }
+                );
           
-              return application;
+                return application;
             }
           
             throw new AuthenticationError('You need to be logged in.');
           },
         // edits the application
+        editApplication: async (parent, args, context) => {
+            // ensuring the user is logged in
+            if (context.user) {
+                // getting the users id
+                const user = await User.findById( context.user.id );
+                // get the application info
+                const {applications} = user;
+
+            const application = await Application.findByIdAndUpdate(
+                { _id: applications },
+                 args,
+                { new: true }
+            );
+
+            return application;
+        }
+
+        throw new AuthenticationError('You need to be logged in.');
+        },
+        acceptApplication: async(parent, args) => {
+            let filter = Application.findOne({name: args.name})
+            let update = {currentStatus: 1};
+            const app = await Application.findOneAndUpdate(filter, update, {new: true});
+            return app
+        },
+        denyApplication: async(parent, args) => {
+            let filter = Application.findOne({name: args.name})
+            let update = {currentStatus: 2};
+            const app = await Application.findOneAndUpdate(filter, update, {new: true});
+            return app
+        }
     }
 };
 

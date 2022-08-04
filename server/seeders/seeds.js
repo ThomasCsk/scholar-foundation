@@ -3,6 +3,7 @@ const { User, Application } = require('../models');
 
 db.once('open', async () => {
   await User.deleteMany();
+  await Application.deleteMany();
 
   await User.create({
     username: 'sbooks',
@@ -86,8 +87,6 @@ await User.create({
  
 console.log('users seeded');
 
-await Application.deleteMany();
-
 await Application.create({
     createdAt: '06/23/2022',
     name: 'Pamela Rams',
@@ -95,11 +94,11 @@ await Application.create({
     phoneNumber: '123-345-9876',
     addressStreet: '123 Easy Lane',
     addressCity: 'Baltimore',
-    state: 'Maryland',
+    state: 'MARYLAND',
     zipCode: '54392',
     guardianName: 'Richard Tuner',
     guardianPhone: '123-434-8769',
-    grade: '6',
+    grade: 'SIXTH',
     school: 'Biscuit Run School',
     currentStatus: '1'
  });
@@ -111,11 +110,11 @@ await Application.create({
     phoneNumber: '903-234-8392',
     addressStreet: '24 Floyd Street',
     addressCity: 'Floyd',
-    state: 'Virginia',
+    state: 'VIRGINIA',
     zipCode: '12392',
     guardianName: 'Katherine Sims',
     guardianPhone: '123-345-6683',
-    grade: '7',
+    grade: 'SEVENTH',
     school: 'Mountain View School',
     currentStatus: '0'
  });
@@ -127,11 +126,11 @@ await Application.create({
     phoneNumber: '583-238-2318',
     addressStreet: '73736 Track Trail',
     addressCity: 'Wilmington',
-    state: 'North Carolina',
+    state: 'NORTH_CAROLINA',
     zipCode: '43627',
     guardianName: 'Maria Lopez',
     guardianPhone: '949-392-9302',
-    grade: '8',
+    grade: 'EIGHTH',
     school: 'Whistler School',
     currentStatus: '2'
  });
@@ -143,11 +142,11 @@ await Application.create({
     phoneNumber: '213-123-4563',
     addressStreet: '21931 Reasons Court',
     addressCity: 'Five Valleys',
-    state: 'New York',
+    state: 'NEW_YORK',
     zipCode: '12912',
     guardianName: 'Randall Grain',
     guardianPhone: '743-123-5984',
-    grade: '10',
+    grade: 'TENTH',
     school: 'Four Seasons School',
     currentStatus: '1'
  });
@@ -159,19 +158,16 @@ await Application.create({
     phoneNumber: '321-329-2312',
     addressStreet: '10294 Rainy Days Drive',
     addressCity: 'Lewes',
-    state: 'Delaware',
+    state: 'DELAWARE',
     zipCode: '32028',
     guardianName: 'James Joyce',
     guardianPhone: '126-392-5803',
-    grade: '9',
+    grade: 'NINTH',
     school: 'Journey School',
     currentStatus: '0'
  });
      
+console.log('applications seeded');
 
-  
-
-  console.log('applications seeded');
-
-  process.exit();
+  process.exit(0);
 });
