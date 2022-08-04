@@ -1,10 +1,9 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { EDIT_APPLICATION } from '../../utils/mutations';
+import { ACCEPT_APPLICATION, DENY_APPLICATION } from '../../utils/mutations';
 
 const Modal = ({ onClose, currentApp }) => {
-  const {    
-    _id,
+  const {
     createdAt,
     name,
     birthday,
@@ -16,27 +15,29 @@ const Modal = ({ onClose, currentApp }) => {
     guardianName,
     guardianPhone,
     grade,
-    school,
-    currentStatus} = currentApp;
+    school} = currentApp;
 
-    const [editApplication] = useMutation(EDIT_APPLICATION);
+    const [acceptApplication] = useMutation(ACCEPT_APPLICATION);
+    const [denyApplication] = useMutation(DENY_APPLICATION);
 
-    const acceptApp = async () => {
+    const acceptApp = async e => {
+      e.preventDefault();
       try{
-        await editApplication({
-
-        })
+        let currentName = name;
+        const data = await acceptApplication({variables: {name: currentName}})
+        console.log(data);
       }
       catch(e){
         console.error(e)
       }
     }
 
-    const denyApp = async () => {
+    const denyApp = async e => {
+      e.preventDefault();
       try{
-        await editApplication({
-
-        })
+        let currentName = name;
+        const data = await denyApplication({variables: {name: currentName}})
+        console.log(data);
       }
       catch(e){
         console.error(e)
@@ -54,7 +55,7 @@ const Modal = ({ onClose, currentApp }) => {
           <div>Phone: {phoneNumber} Birthday: {birthday}</div>
           <div>Street: {addressStreet} City: {addressCity}</div>
           <div>State: {state} Zipcode: {zipCode}</div>
-          <div>Parent/Guardian Name: {guardianName} Parent/Gaurdian Phone: {guardianPhone}</div>
+          <div>Parent/Guardian Name: {guardianName} Parent/Guardian Phone: {guardianPhone}</div>
           <div>School: {school} Grade: {grade}</div>
         </div>    
         <div className='modalButtons'>

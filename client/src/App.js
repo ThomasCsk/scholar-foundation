@@ -11,7 +11,11 @@ import Staff from './pages/Staff';
 import Questions from './pages/Questions';
 import Dashboard from './pages/Dashboard';
 import Donate from './pages/Donate';
-import LogInSignUp from './pages/LogInSignUp';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import AdminSignup from './pages/AdminSignup';
+
+import './index.css';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -61,8 +65,16 @@ function App() {
                 element={<Donate/>}
               />
               <Route
-                path="/loginsignup"
-                element={<LogInSignUp/>}
+                path="/login"
+                element={<Login/>}
+              />
+                 <Route
+                path="/signup"
+                element={<Signup/>}
+              />
+              <Route
+                path="/adminsignup"
+                element={<AdminSignup/>}
               />
             </Routes>
           </div>

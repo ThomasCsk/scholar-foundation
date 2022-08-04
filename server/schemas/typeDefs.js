@@ -86,10 +86,12 @@ const typeDefs = gql`
                   addressCity: String
                   state: Statelist
                   zipCode: Int
-                  guardianName: String!
-                  guardianPhone: String!
+                  guardianName: String
+                  guardianPhone: String
                   grade: Gradelist
                   school: String ): Application
+    acceptApplication(name: String!): Application
+    denyApplication(name: String!): Application                
   }
 
   type Auth {
@@ -104,7 +106,7 @@ const typeDefs = gql`
       NINTH
       TENTH
       ELEVENTH
-      TWELTH 
+      TWELFTH 
     }
 
   enum Statelist {
