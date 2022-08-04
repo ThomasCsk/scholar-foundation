@@ -12,18 +12,20 @@ export const LOGIN = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser(
-    $username: String!
-    $name: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      username: $username
-      name: $name
-      email: $email
-      password: $password
+  mutation AddUser(
+    $username: String!, 
+    $email: String!, 
+    $password: String!, 
+    $name: String!, 
+    $admin: Boolean!
     ) {
+    addUser(
+      username: $username, 
+      email: $email, 
+      password: $password, 
+      name: $name, 
+      admin: $admin
+      ) {
       token
       user {
         _id
@@ -67,6 +69,28 @@ export const EDIT_APPLICATION = gql`
       guardianPhone
       grade
       school
+      currentStatus
+    }
+  }
+`
+
+export const ACCEPT_APPLICATION = gql`
+  mutation Mutation($name: String!) {
+    acceptApplication(name: $name) {
+      _id
+      createdAt
+      name
+      currentStatus
+    }
+  }
+`
+
+export const DENY_APPLICATION = gql`
+  mutation Mutation($name: String!) {
+    denyApplication(name: $name) {
+      _id
+      createdAt
+      name
       currentStatus
     }
   }

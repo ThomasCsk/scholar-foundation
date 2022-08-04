@@ -38,7 +38,7 @@ const PendingApplicaitons = () => {
         {pendingApps.map((app, i) => (
           <li key={app._id} onClick={() => toggleModal(app, i)}>
             <div><h4>Name: {app.name}</h4> <h4>Created at: {app.createdAt}</h4></div>
-            <div><h5>Birthday: {app.birthday}</h5> <h5>Parent/Gaurdian: {app.guardianName}</h5></div>
+            <div><h5>Birthday: {app.birthday}</h5> <h5>Parent/Guardian: {app.guardianName}</h5></div>
             <div><h5>School: {app.school}</h5> <h5>Grade: {app.grade}</h5></div>
           </li>
         ))}
