@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
- import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
 const Header = () => {
 
@@ -11,8 +11,8 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <div>
+    <header className='container'>
+      <div className='header'>
         <Link to="/">
           <h3>About</h3>
         </Link>
