@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import Donate from './pages/Donate';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import AdminSignup from './pages/AdminSignup';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -68,6 +69,10 @@ function App() {
                  <Route
                 path="/signup"
                 element={<Signup/>}
+              />
+              <Route
+                path="/adminsignup"
+                element={<AdminSignup/>}
               />
             </Routes>
           </div>

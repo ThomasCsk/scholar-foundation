@@ -5,13 +5,13 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
 
-const Signup = () =>{
+const AdminSignup = () =>{
     const [formState, setFormState] = useState({
         username: '',
         name: '',
         email: '',
         password: '',
-        admin: true,
+        admin: false,
       });
       const [addUser, { error }] = useMutation(ADD_USER);
     
@@ -48,7 +48,7 @@ console.log(formState)
   return (
     <div>
         <Link to="/login">← Go to Login</Link>
-        <Link to="/adminsignup">← Go to Admin Signup</Link>
+        <Link to="/signup">← Go to Student Signup</Link>
     <h2>SIGN UP</h2>
     <form onSubmit={handleFormSubmit}>
     <div>
@@ -95,17 +95,6 @@ console.log(formState)
           onChange={handleChange}
         />
     </div>
-    {/* <div>
-        <label htmlFor="admin">Are you a student?</label>
-        
-        <input
-          name="admin"
-          type="checkbox"
-          id="admin" 
-          // value={formState.admin}
-          onChange={handleChange} 
-          />
-      </div>  */}
         <button type="submit">Submit</button>
      </form>
      {error && <div>Signup failed</div>}
@@ -114,4 +103,4 @@ console.log(formState)
   )
 }
 
-export default Signup;
+export default AdminSignup;
